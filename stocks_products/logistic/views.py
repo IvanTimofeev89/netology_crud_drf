@@ -19,11 +19,13 @@ class ProductViewSet(ModelViewSet):
     serializer_class = ProductSerializer
     pagination_class = ProductViewSetPagination
     filter_backends = [SearchFilter]
-    search_fields = ['description']
+    search_fields = ['title', 'description']
+
 
 
 class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
+    pagination_class = ProductViewSetPagination
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['positions__product__id']
+    filterset_fields = ['products']
